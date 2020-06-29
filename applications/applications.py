@@ -99,6 +99,35 @@ class Example(object):
     def plot_results(self):
         raise NotImplementedError
 
+class ModelProblem(Example):
+
+    def __init__(self,A,B,C):
+        """
+        Quadratic model problem:
+        $$
+        f(x,y) = 0.5 + x^TAx + 0.5*y^TBy + x^TCy
+        $$
+        """
+
+        n = A.shape[0]
+
+        self.A = A
+        self.B = B
+        self.C = C
+        self.n = n
+
+    def val(self,x,y):
+        f = 0.5*x.dot(self.A.dot(x)) + 0.5*y.dot(self.A.dot(y)) + 0.5*x.dot(self.C.dot(y))
+        return f
+
+    def gradx(self,x,y):
+        g = self.A.dot(x) + self.C.dot(y)
+        return g
+
+    def grady(self,x,y):
+        g = self.B.dot(y) + self.C.T.dot(x)
+        return g
+
 
 class ExpFit(Example):
     """
