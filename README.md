@@ -2,10 +2,12 @@
 Python code accompanying the paper "Non-smooth Variable Projection" by T. van Leeuwen and A. Aravkin. Submitted to SISC.
 
 The algorithms are designed to solve problems of the form
+
 $$
 \min_{x,y} f(x,y) + r_1(x) + r_2(y),
 $$
-where $f$ is Liptschitz-smooth and $r_1, r_2$ are (convex) regularisation terms.
+
+where $f$ is Lipschitz-smooth and $r_1, r_2$ are (convex) regularisation terms.
 
 Algorithm 1 solves it using
 \[
