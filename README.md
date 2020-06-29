@@ -10,23 +10,29 @@ $$
 where $f$ is Lipschitz-smooth and $r_1, r_2$ are (convex) regularisation terms.
 
 Algorithm 1 solves it using
-\[
+
+$$
 x_{k+1} = \text{prox_{\alpha r_1}}(x_k - \alpha \nabla_x f(x_k,y_k)),
-\]
-\[
+$$
+
+$$
 y_{k+1} = \text{prox_{\beta r_2}}(y_k - \alpha \nabla_y f(x_k,y_k)).
-\]
+$$
 
 Algorithm 2 and 3 essentially recast the problem as
-\[
+
+$$
 \min_x \overline{f}(x) + r_1(x),
-\]
+$$
+
 where $\overline{f}(x) = \min_y f(x,y) + r_2(y)$.
 We can solve this without explicitly forming \overline{f} as
-\[
+
+$$
 x_{k+1} = \text{prox_{\alpha r_1}}(x_k - \alpha \nabla_x f(x_k,y_k)),
 y_{k+1} = \text{argmin_y} f(x_{k+1},y) + r_2(y).
-\]
+$$
+
 The main difference between algorithms 2 and 3 being that the latter solves the inner problem in $y$ inexactly.
 
 The main benefits of the VP approach over the naïve joint approach are
