@@ -206,14 +206,16 @@ def plot_convergence(results, labels, reference = np.float64(0)):
     for result,label in zip(results,labels):
         niter = len(result['objective'])
         k = np.linspace(0,niter-1,niter)
-        ax[0].semilogy(k+1,result['objective'] - reference,label=label)
-        ax[1].semilogy(np.cumsum(result['cost']),result['objective'] - reference,label=label)
+        ax[0].semilogy(k+1,(result['objective'] - reference)/result['objective'][0],label=label)
+        ax[1].semilogy(np.cumsum(result['cost']),(result['objective'] - reference)/result['objective'][0],label=label)
 
     ax[0].set_xlabel('iteration')
     if np.abs(reference) > 0:
-        ax[0].set_ylabel(r'$f_k - f_*$')
+        ax[0].set_ylabel(r'$F_k - F_*$')
     else:
-        ax[0].set_ylabel(r'$f_k$')
-    ax[0].legend()
+        ax[0].set_ylabel(r'$F_k/F_0$')
+    ax[1].legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
     ax[1].set_xlabel('cost')
     return fig, ax
+
+
