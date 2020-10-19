@@ -84,7 +84,7 @@ def algorithm2(f,r1,r2,x0,y0,L = (1,1),maxit = [1000,1000],tol = [1e-3,1e-3],war
     # initialize
     xk = np.copy(x0)
     yk = np.copy(y0)
-    res = {'objective':[],'sol':[],'dx':[],'cost':[]}
+    res = {'objective':[],'sol':[],'dx':[],'cost':[],'dy':[]}
 
     # stepsizes
     alpha = 1/L[0]
@@ -101,7 +101,7 @@ def algorithm2(f,r1,r2,x0,y0,L = (1,1),maxit = [1000,1000],tol = [1e-3,1e-3],war
             yp = r2.prox(yk - beta*gy,beta)
             dy = yp - yk
             yk = yp
-            if np.linalg.norm(dy)/beta <= epsk:
+            if np.linalg.norm(dy) <= epsk:
                 break
 
         # evaluate reduced objective
@@ -115,7 +115,8 @@ def algorithm2(f,r1,r2,x0,y0,L = (1,1),maxit = [1000,1000],tol = [1e-3,1e-3],war
 
         # keep track
         res['objective'].append(fk)
-        res['dx'].append(np.linalg.norm(dx)/alpha)
+        res['dx'].append(np.linalg.norm(dx))
+        res['dy'].append(np.linalg.norm(dy))
         res['cost'].append(l + 2)
 
         # check convergence
@@ -154,7 +155,7 @@ def algorithm3(f,r1,r2,x0,y0,L = (1,1),rho = 1, maxit = [1000,1000],tol = 1e-3,w
     # initialize
     xk = np.copy(x0)
     yk = np.copy(y0)
-    res = {'objective':[],'sol':[],'dx':[],'cost':[]}
+    res = {'objective':[],'sol':[],'dx':[],'cost':[],'dy':[]}
 
     # stepsizes
     alpha = 1/L[0]
@@ -188,7 +189,8 @@ def algorithm3(f,r1,r2,x0,y0,L = (1,1),rho = 1, maxit = [1000,1000],tol = 1e-3,w
 
         # keep track
         res['objective'].append(fk)
-        res['dx'].append(np.linalg.norm(dx)/alpha)
+        res['dx'].append(np.linalg.norm(dx))
+        res['dy'].append(np.linalg.norm(dy))
         res['cost'].append(l + 2)
 
         # check convergence
