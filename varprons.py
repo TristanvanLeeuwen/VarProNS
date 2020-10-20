@@ -101,7 +101,7 @@ def algorithm2(f,r1,r2,x0,y0,L = (1,1),maxit = [1000,1000],tol = [1e-3,1e-3],war
             yp = r2.prox(yk - beta*gy,beta)
             dy = yp - yk
             yk = yp
-            if np.linalg.norm(dy) <= epsk:
+            if np.linalg.norm(dy) <= epsk*np.linalg.norm(yk):
                 break
 
         # evaluate reduced objective
