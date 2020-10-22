@@ -3,7 +3,9 @@ Python code accompanying the paper "Non-smooth Variable Projection" by T. van Le
 
 The algorithms are designed to solve problems of the form
 
-<img src="https://render.githubusercontent.com/render/math?math=\min_{x,y} f(x,y)%2Br_1(x)%2Br_2(y)">
+$$
+\min_{x,y} f(x,y) + r_1(x) + r_2(y),
+$$
 
 where $f$ is Lipschitz-smooth and $r_1, r_2$ are (convex) regularisation terms.
 
